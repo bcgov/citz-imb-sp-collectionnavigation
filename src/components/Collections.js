@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Collection from './Collection'
-import { ButtonGroup } from '@material-ui/core'
 
-export default function Collections() {
+export default function Collections({ baseUrl }) {
 	const [collections, setCollections] = useState([])
 
 	useEffect(() => {
 		axios
 			.get(
-				`http://localhost:8081/_api/search/query?querytext='SPSiteUrl:citz.sp AND contentclass:STS_Site'&RowLimit=25&selectproperties='Title,Path,Description'`
+				`${baseUrl}/_api/search/query?querytext='SPSiteUrl:citz.sp AND contentclass:STS_Site'&RowLimit=25&selectproperties='Title,Path,Description'`
 			)
 			.then(response => {
 				const tempColl = response.data.PrimaryQueryResult.RelevantResults.Table.Rows.map(
@@ -36,6 +35,7 @@ export default function Collections() {
 					return comparison
 				})
 
+
 				setCollections(tempColl)
 			})
 			.catch(error => {
@@ -59,12 +59,12 @@ export default function Collections() {
 				console.groupEnd()
 			})
 
-		return () => {}
+		return () => { }
 	}, [])
 
-	return collections.map((collection, index) => {
-		if (!(collection.Name == 'DEV' || collection.Name == 'UAT')) {
-			return <Collection key={index} {...collection} />
-		}
-	})
+	return <div><h1>collections</h1>
+		<ul>
+			{collections.map((collection, key) => <Collection key={key} {...collection} />)}
+		</ul>
+	</div>
 }

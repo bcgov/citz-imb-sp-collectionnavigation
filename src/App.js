@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
 import Collections from "./components/Collections";
 import { ButtonGroup } from "@material-ui/core";
@@ -17,16 +17,22 @@ const useStyles = makeStyles(theme => ({
 }));
 
 function App() {
+  let _spPageContextInfo = window._spPageContextInfo
   const classes = useStyles();
+  const [baseUrl, setBaseUrl] = useState('')
+
+  useEffect(() => {
+    if (_spPageContextInfo === undefined) {
+      setBaseUrl('https://localhost:8081')
+    } else {
+      setBaseUrl(_spPageContextInfo.siteAbsoluteUrl)
+    }
+    return () => { };
+  }, [])
+
   return (
     <div className={classes.root}>
-      <ButtonGroup
-        variant='text'
-        color='primary'
-        aria-label="text primary button group"
-      >
-        <Collections />
-      </ButtonGroup>
+        <Collections baseUrl={baseUrl} />
     </div>
   )
 }
