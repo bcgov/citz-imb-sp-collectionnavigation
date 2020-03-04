@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Collections from "./components/Collections";
+import MenuTest from "./components/MenuTest";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -18,20 +19,21 @@ const useStyles = makeStyles(theme => ({
 function App() {
   let _spPageContextInfo = window._spPageContextInfo
   const classes = useStyles();
-  const [baseUrl, setBaseUrl] = useState('')
+  let baseUrl = ''
 
   useEffect(() => {
     if (_spPageContextInfo === undefined) {
-      setBaseUrl('https://localhost:8081')
+      baseUrl = 'https://localhost:8081'
     } else {
-      setBaseUrl(_spPageContextInfo.siteAbsoluteUrl)
+      baseUrl = _spPageContextInfo.siteAbsoluteUrl
     }
     return () => { };
-  }, [_spPageContextInfo])
+  }, [])
 
   return (
     <div className={classes.root}>
-        <Collections baseUrl={baseUrl} />
+      <MenuTest />
+      <Collections baseUrl={baseUrl} />
     </div>
   )
 }

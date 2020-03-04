@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Fragment } from 'react'
 import axios from 'axios'
 import Collection from './Collection'
 
@@ -126,13 +126,9 @@ export default function Collections({ baseUrl }) {
 
 	return (
 		<div>
-			<h1>collections</h1>
-			
-			<ul>
-				{collections.map((collection, key) => (
-					<Collection key={key} {...collection} />
-				))}
-			</ul>
+			{collections.map((collection, key) => (
+				<Collection key={key} {...collection} />
+			))}
 		</div>
 	)
 }
