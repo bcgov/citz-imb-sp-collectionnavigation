@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Collections from "./components/Collections";
-import { ButtonGroup } from "@material-ui/core";
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -28,7 +27,7 @@ function App() {
       setBaseUrl(_spPageContextInfo.siteAbsoluteUrl)
     }
     return () => { };
-  }, [])
+  }, [_spPageContextInfo])
 
   return (
     <div className={classes.root}>
