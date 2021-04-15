@@ -10,7 +10,8 @@
     "start": "webpack serve --config webpack/webpack.config.js --env env=dev",
     "build": "webpack --config webpack/webpack.config.js --env env=prod",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
-    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+    "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
+    "serve": "node ./proxy/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -54,6 +55,7 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "prettier": "^2.2.1",
+    "sp-rest-proxy": "^3.0.5",
     "style-loader": "^2.0.0",
     "typescript": "^4.2.4",
     "webpack": "^5.33.2",
