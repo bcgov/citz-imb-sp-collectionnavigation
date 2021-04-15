@@ -13,7 +13,8 @@
     "build": "webpack --config webpack/webpack.config.js --env env=prod",
     "lint": "eslint --fix \"./src/**/*.{js,jsx,ts,tsx,json}\"",
     "format": "prettier --write \"./src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "serve": "node ./proxy/server.js"
+    "serve": "node ./proxy/server.js",
+    "startServers": "concurrently --kill-others \"npm run serve\" \"npm run start\""
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -43,6 +44,7 @@
     "@typescript-eslint/eslint-plugin": "^4.22.0",
     "@typescript-eslint/parser": "^4.22.0",
     "babel-loader": "^8.2.2",
+    "concurrently": "^6.0.2",
     "copy-webpack-plugin": "^8.1.1",
     "css-loader": "^5.2.1",
     "eslint": "^7.24.0",
