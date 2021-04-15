@@ -1,41 +1,26 @@
-import React, { useState, useEffect } from "react";
-import "./App.css";
-import Collections from "./components/Collections";
-import MenuTest from "./components/MenuTest";
+import React from 'react'
+import './App.css'
+import { CollectionMenu } from './components/CollectionMenu'
+import { CssBaseline } from '@material-ui/core'
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles'
 
-import { makeStyles } from '@material-ui/core/styles';
+const theme = createMuiTheme({
+	palette: {
+		primary: {
+			main: '#fff',
+		},
+		secondary: {
+			main: '#ff0000',
+		},
+	},
+})
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    '& > *': {
-      margin: theme.spacing(0),
-    },
-  },
-}));
-
-function App() {
-  let _spPageContextInfo = window._spPageContextInfo
-  const classes = useStyles();
-  let baseUrl = ''
-
-  useEffect(() => {
-    if (_spPageContextInfo === undefined) {
-      baseUrl = 'https://localhost:8081'
-    } else {
-      baseUrl = _spPageContextInfo.siteAbsoluteUrl
-    }
-    return () => { };
-  }, [])
-
-  return (
-    <div className={classes.root}>
-      <MenuTest />
-      <Collections baseUrl={baseUrl} />
-    </div>
-  )
+export const App = () => {
+	return (
+		<ThemeProvider theme={theme}>
+			<CssBaseline>
+				<CollectionMenu />
+			</CssBaseline>
+		</ThemeProvider>
+	)
 }
-
-export default App;
